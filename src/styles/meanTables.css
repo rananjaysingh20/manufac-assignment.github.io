@@ -1,4 +1,7 @@
-.tables {
-    border: solid;
-    width: 80%;;
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+table {
+    width: 80%;
 }

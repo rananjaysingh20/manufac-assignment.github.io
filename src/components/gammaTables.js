@@ -1,11 +1,11 @@
-import React from 'react'
+import '../styles/gammaTables.css'
 
 export const GammaTable = ({categories, gammaMean, gammaMode, gammaMedian}) => {
   return (
     <div>
-        <div className='mean table'>
-            <table className='tables'>
-                <tr className='col-one'>
+        <div>
+            <table>
+                <tr>
                     <th>Measure</th>
                     {categories.map((item, index) => {
                         return <th key={index}>Class {item}</th>

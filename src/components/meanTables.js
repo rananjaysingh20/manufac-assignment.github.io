@@ -2,9 +2,9 @@ import '../styles/meanTables.css'
 
 export const MeanTable = ({categories, mean, median, mode}) => {
     return (
-        <div className='mean table'>
-            <table className='tables'>
-                <tr className='col-one'>
+        <div>
+            <table>
+                <tr>
                     <th>Measure</th>
                     {categories.map((item, index) => {
                         return <th key={index}>Class {item}</th>

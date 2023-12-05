@@ -123,6 +123,7 @@ export const TableContainer = () => {
   return (
     <div>
         <MeanTable categories={categories} mean={mean} median={median} mode={mode}/>
+        <br />
         <GammaTable categories={categories} gammaMean={gammaMean} gammaMedian={gammaMedian} gammaMode={gammaMode}/>
     </div>
   )
