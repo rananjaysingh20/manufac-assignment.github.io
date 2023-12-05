@@ -1,4 +1,4 @@
-import '../styles/gammaTables.css'
+import '../styles/tableStyles.css'
 
 export const GammaTable = ({categories, gammaMean, gammaMode, gammaMedian}) => {
   return (
@@ -12,21 +12,21 @@ export const GammaTable = ({categories, gammaMean, gammaMode, gammaMedian}) => {
                     })}
                 </tr>
                 <tr>
-                    <td>Gamma Mean</td>
+                    <th>Gamma Mean</th>
                     {gammaMean.map((item, index) => {
-                        return <th key={index}>{Math.round(item*1000)/1000}</th>
+                        return <td key={index}>{Math.round(item*1000)/1000}</td>
                     })}
                 </tr>
                 <tr>
-                    <td>Gamma Median</td>
+                    <th>Gamma Median</th>
                     {gammaMedian.map((item, index) => {
-                        return <th key={index}>{Math.round(item*1000)/1000}</th>
+                        return <td key={index}>{Math.round(item*1000)/1000}</td>
                     })}
                 </tr>
                 <tr>
-                    <td>Gamma Mode</td>
+                    <th>Gamma Mode</th>
                     {gammaMode.map((item, index) => {
-                        return <th key={index}>{Math.round(item*1000)/1000}</th>
+                        return <td key={index}>{Math.round(item*1000)/1000}</td>
                     })}
                 </tr>
             </table>

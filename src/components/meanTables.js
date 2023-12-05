@@ -1,34 +1,36 @@
-import '../styles/meanTables.css'
+import '../styles/tableStyles.css'
 
 export const MeanTable = ({categories, mean, median, mode}) => {
     return (
         <div>
-            <table>
-                <tr>
-                    <th>Measure</th>
-                    {categories.map((item, index) => {
-                        return <th key={index}>Class {item}</th>
-                    })}
-                </tr>
-                <tr>
-                    <td>Flavanoids Mean</td>
-                    {mean.map((item, index) => {
-                        return <th key={index}>{Math.round(item*1000)/1000}</th>
-                    })}
-                </tr>
-                <tr>
-                    <td>Flavanoids Median</td>
-                    {median.map((item, index) => {
-                        return <th key={index}>{Math.round(item*1000)/1000}</th>
-                    })}
-                </tr>
-                <tr>
-                    <td>Flavanoids Mode</td>
-                    {mode.map((item, index) => {
-                        return <th key={index}>{item}</th>
-                    })}
-                </tr>
-            </table>
+            <div>
+                <table>
+                    <tr>
+                        <th>Measure</th>
+                        {categories.map((item, index) => {
+                            return <th key={index}>Class {item}</th>
+                        })}
+                    </tr>
+                    <tr>
+                        <th>Flavanoids Mean</th>
+                        {mean.map((item, index) => {
+                            return <td key={index}>{Math.round(item*1000)/1000}</td>
+                        })}
+                    </tr>
+                    <tr>
+                        <th>Flavanoids Median</th>
+                        {median.map((item, index) => {
+                            return <td key={index}>{Math.round(item*1000)/1000}</td>
+                        })}
+                    </tr>
+                    <tr>
+                        <th>Flavanoids Mode</th>
+                        {mode.map((item, index) => {
+                            return <td key={index}>{item}</td>
+                        })}
+                    </tr>
+                </table>
+            </div>
         </div>
     )
 }

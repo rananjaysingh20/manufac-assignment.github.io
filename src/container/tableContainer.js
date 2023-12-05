@@ -11,26 +11,12 @@ export const TableContainer = () => {
     const [gammaMean, setGammaMean] = useState([]);
     const [gammaMedian, setGammaMedian] = useState([]);
     const [gammaMode, setGammaMode] = useState([]);
+    //this will calculate all the values once the page is loading for the first time
     useEffect(() => {
-        const cat = Array.from(new Set(data.map((item) => item.Alcohol)));
-        setCategories(cat);
-        let flav = [];
-        let flavTotal = [];
-        let sum = 0;
-        let j = 1;
-        let k = 1;
-        for(let i=0; i<data.length;i++) {
-            if(data[i].Alcohol === j) {
-                sum = sum + data[i].Flavanoids*1;
-                flav[j-1] = sum;
-                k++;
-                flavTotal[j-1] = k;
-            } else {
-                j++;
-                sum = 0;
-                k = 1;
-            }
-        }
+      //calculate number of categories based on alcohol type
+      const cat = Array.from(new Set(data.map((item) => item.Alcohol)));
+      setCategories(cat);
+        //calculate total of flavonoids and gamma in each category and 
         let flavSet = [];
         let flavSets = [];
         let gammaSet = [];
@@ -60,50 +46,37 @@ export const TableContainer = () => {
         const gammaNums = cat.map((item, index) => {
             return gammaSets[index].length;
         });
+        const flavSums = cat.map((item, index) => {
+          return flavSets[index].reduce((partialSum, acc) => partialSum+acc, 0);
+        });
+        const flavNums = cat.map((item, index) => {
+            return flavSets[index].length;
+        });
+        //function to calculate mode based on entered array
+        const calculateMode = (input, output) => {
+            for(let i=0;i<cat.length;i++) {
+                let arr = input[i];
+                let mode = {};
+                let max = 0;
+                let count = 0
+                arr.forEach(function(e) {
+                  if(mode[e] == null) {
+                    mode[e] = 1;
+                  } else {
+                    mode[e]++;
+                  }
+                  if(count< mode[e]) {
+                    max = e;
+                    count = mode[e];
+                  }
+                });
+                output.push(max);
+            }
+        }
         let modes = [];
-        const calculateMode = () => {
-            for(let i=0;i<cat.length;i++) {
-                let arr = flavSets[i];
-                let mode = {};
-                let max = 0;
-                let count = 0
-                arr.forEach(function(e) {
-                  if(mode[e] == null) {
-                    mode[e] = 1;
-                  } else {
-                    mode[e]++;
-                  }
-                  if(count< mode[e]) {
-                    max = e;
-                    count = mode[e];
-                  }
-                });
-                modes.push(max);
-            }
-        }
-        calculateMode();
         let gammaModes = [];
-        const calculateGammaMode = () => {
-            for(let i=0;i<cat.length;i++) {
-                let arr = gammaSets[i];
-                let mode = {};
-                let max = 0;
-                let count = 0
-                arr.forEach(function(e) {
-                  if(mode[e] == null) {
-                    mode[e] = 1;
-                  } else {
-                    mode[e]++;
-                  }
-                  if(count< mode[e]) {
-                    max = e;
-                    count = mode[e];
-                  }
-                });
-                gammaModes.push(max);
-            }
-        }
-        calculateGammaMode();
+        calculateMode(flavSets, modes);
+        calculateMode(gammaSets, gammaModes);
         setGammaMean(cat.map((item, index) => {
             return gammaSums[index]/gammaNums[index];
         }));
@@ -112,11 +85,10 @@ export const TableContainer = () => {
             return (gammaNums[index]/2) + (gammaNums[index]/2 + 1)/2;
         }));
         setMean(cat.map((item,index) => {
-            return flav[index]/flavTotal[index];
+            return flavSums[index]/flavNums[index];
         }));
-        
         setMedian(cat.map((item, index) => {
-            return (flavTotal[index]/2) + (flavTotal[index]/2 + 1)/2;
+            return (flavNums[index]/2) + (flavNums[index]/2 + 1)/2;
         }));
         setMode(cat.map((item,index) => modes[index]));
     }, []);

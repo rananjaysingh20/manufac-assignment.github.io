@@ -1,0 +1,26 @@
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+table {
+    width: 80%;
+    box-shadow: 10px 10px 5px 5px black;
+    transition: all 0.2s ease-in;
+}
+th {
+    width: 200px;
+    padding: 5px;
+}
+td {
+    background-color: black;
+    transition: all 0.2s ease-in;
+    &:hover {
+        background-color: blue;
+    }
+}
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+}
