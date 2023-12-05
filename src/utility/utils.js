@@ -60,8 +60,25 @@ export const statCalculator = (data) => {
     }
     let modes = [];
     let gammaModes = [];
+    let median = [];
+    let gammaMedian = [];
+    const calculateMedian = (input, output) => {
+      for(let i=0; i < cat.length; i++) {
+        let arr = input[i];
+        arr.sort((a,b) => a-b);
+        const middleIndex = Math.floor(arr.length / 2);
+        if (arr.length % 2 === 0) {
+          output.push((arr[middleIndex - 1] + arr[middleIndex]) / 2);
+        } else {
+          output.push(arr[middleIndex]);
+        }
+      }
+    }
+    calculateMedian(flavSets, median);
+    calculateMedian(gammaSets, gammaMedian);
+    console.log(median,'fina')
     calculateMode(flavSets, modes);
     calculateMode(gammaSets, gammaModes);
 
-    return ({cat, flavNums, flavSums, gammaNums, gammaSums, modes, gammaModes})
+    return ({cat, flavNums, flavSums, gammaNums, gammaSums, modes, gammaModes, gammaMedian, median})
 }
