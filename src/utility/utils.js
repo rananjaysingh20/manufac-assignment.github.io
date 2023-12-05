@@ -62,6 +62,7 @@ export const statCalculator = (data) => {
     let gammaModes = [];
     let median = [];
     let gammaMedian = [];
+    //function to calculate median based on entered array
     const calculateMedian = (input, output) => {
       for(let i=0; i < cat.length; i++) {
         let arr = input[i];
@@ -76,7 +77,6 @@ export const statCalculator = (data) => {
     }
     calculateMedian(flavSets, median);
     calculateMedian(gammaSets, gammaMedian);
-    console.log(median,'fina')
     calculateMode(flavSets, modes);
     calculateMode(gammaSets, gammaModes);
 

@@ -25,7 +25,6 @@ export const TableContainer = () => {
       gammaMedian,
       median,
     } = statCalculator(data);
-    console.log(median, 'des');
     setCategories(cat);
     setGammaMean(cat.map((item, index) => {
         return gammaSums[index]/gammaNums[index];

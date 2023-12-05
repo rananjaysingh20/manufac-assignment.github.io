@@ -5,6 +5,7 @@ export const MeanTable = ({categories, mean, median, mode}) => {
         <div>
             <div>
                 <table>
+                    <tbody>
                     <tr>
                         <th>Measure</th>
                         {categories.map((item, index) => {
@@ -29,6 +30,7 @@ export const MeanTable = ({categories, mean, median, mode}) => {
                             return <td key={index}>{item}</td>
                         })}
                     </tr>
+                    </tbody>
                 </table>
             </div>
         </div>

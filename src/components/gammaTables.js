@@ -5,6 +5,7 @@ export const GammaTable = ({categories, gammaMean, gammaMode, gammaMedian}) => {
     <div>
         <div>
             <table>
+                <tbody>
                 <tr>
                     <th>Measure</th>
                     {categories.map((item, index) => {
@@ -29,6 +30,7 @@ export const GammaTable = ({categories, gammaMean, gammaMode, gammaMedian}) => {
                         return <td key={index}>{Math.round(item*1000)/1000}</td>
                     })}
                 </tr>
+                </tbody>
             </table>
         </div>
     </div>
